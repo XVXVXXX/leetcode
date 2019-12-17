@@ -23,8 +23,11 @@ class Solution:
         length = 0
         for idx, val in enumerate(haystackList):
             
-            for needldIdx,needleVal in enumerate(needleList):                
-                
+            for needldIdx,needleVal in enumerate(needleList):
+                # 超过父只字符串边界
+                if idx+length >= len(haystack):
+                    return -1
+
                 if haystackList[idx+length] != needleVal:
                     length = 0                    
                     break
@@ -46,3 +49,7 @@ print(solu.strStr(haystack, needle))
 haystack = "aaa"
 needle = "aaaa"
 print(solu.strStr(haystack, needle))        
+
+haystack = "mississippi"
+needle = "issipi"
+print(solu.strStr(haystack, needle))
