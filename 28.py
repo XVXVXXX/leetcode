@@ -6,9 +6,6 @@ class Solution:
         if haystack == needle:
             return 0
 
-        if haystack == needle == '':
-            return 0
-
         if needle == '':
             return 0
 
