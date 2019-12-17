@@ -5,9 +5,9 @@ class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         length = len(nums)
 
+        # 二分查找
         left = 0
         right = length-1
-
         idx = None
         while left < right:
             idx = int((left + right) / 2)
