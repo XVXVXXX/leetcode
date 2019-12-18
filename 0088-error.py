@@ -17,53 +17,46 @@
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 from typing import List
 class Solution:
-    def merge2(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        # idx1 = idx2 = 0
+        # cursorIdx = 0
+        # while cursorIdx<m+n:
+        #     if nums1[idx1] >=  nums2[idx2]:
+        #         pass
+        i = 0
+
         if m == 0:
             for idx in range(0, n):
                 nums1[idx] = nums2[idx]
-            return None
+            return
 
-        if n == 0:
-            return None
-
-        cursor1 = cursor2 = 0
-        result = []        
         for num2 in nums2:
-            num1 = nums1[cursor1]
-            while num1 < num2 and cursor1 < m:
-                result.append(num1)
-                cursor1+=1
-                if cursor1 < m:
-                    num1 = nums1[cursor1]
+            loc = self.searchInsert(nums1[0:m+i], num2)
+            nums1.insert(loc, num2)
+            nums1.pop(-1)
+            i+=1
+
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        length = len(nums)
+
+        left = 0
+        right = length-1
+
+        idx = None
+        while left < right:
+            idx = int((left + right) / 2)
+            cntValue = nums[idx]
+            
+            if target > cntValue:
+                left = idx+1
+            elif target < cntValue:
+                right = idx-1
             else:
-                result.append(num2)
-        
-        while cursor1<m:
-            result.append(nums1[cursor1])
-            cursor1+=1
-
-        for idx in range(0, m+n):
-            nums1[idx] = result[idx]
-        return None
-    
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        c1 = c2 = 0
-        l1_cp = nums1[:m]
-        nums1.clear()       
-        while c1<m and c2<n:
-            if l1_cp[c1]<nums2[c2]:
-                nums1.append(l1_cp[c1])
-                c1+=1
-            else:
-                nums1.append(nums2[c2])
-                c2+=1
-
-        if c1<m:
-            nums1[c1+c2:]=l1_cp[c1:]
-        elif c2<n:
-           nums1[c1+c2:]=nums2[c2:] 
-
-        return None
+                return idx
+        if target > nums[left]:
+            return left+1
+        else:
+            return left
 
 solu = Solution()
 nums1 = [1,2,3,0,0,0]
@@ -91,4 +84,4 @@ m = 3
 nums2 = [-1,1,1,1,2,3]
 n = 6
 solu.merge(nums1, m, nums2, n)
-print(nums1)            
+print(nums1)
