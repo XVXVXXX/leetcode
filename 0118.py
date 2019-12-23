@@ -8,7 +8,7 @@ class Solution:
         for i in range(1, numRows+1):
             cntList = [None] * i
             cntList[0] = cntList[i-1] = 1
-            for j in range(1, (i>>1)+1):
+            for j in range(1, (i+1)>>1):
                 val = lastList[j] + lastList[j-1]
                 cntList[j] = cntList[i-j-1] = val
             
