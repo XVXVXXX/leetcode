@@ -1,6 +1,23 @@
 from typing import List
 class Solution:
+    # 2021/6/16
     def removeDuplicates(self, nums: List[int]) -> int:
+        length = len(nums)
+        if length < 2:
+            return length
+        
+        count = 0
+        for idx, val in enumerate(nums):
+            if nums[count] == val:
+                continue
+            else:
+                count=count+1
+                nums[count]=val
+        
+        return count+1
+    
+    # 2020
+    def removeDuplicates1(self, nums: List[int]) -> int:
         length = len(nums)
         if length < 2:
             return length
