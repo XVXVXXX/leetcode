@@ -1,7 +1,19 @@
 from typing import List
 
 class Solution:
+    #2021/6/16
     def removeElement(self, nums: List[int], val: int) -> int:
+        cursor = 0
+        for idx, num in enumerate(nums):
+            if num == val:
+                continue
+            else:
+                nums[cursor] = num
+                cursor+=1
+
+        return cursor
+    
+    def removeElement1(self, nums: List[int], val: int) -> int:
         length = len(nums)
         if length == 0:
             return 0
