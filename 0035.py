@@ -2,7 +2,24 @@
 # 你可以假设数组中无重复元素。
 from typing import List
 class Solution:
+    #2021/06/16
     def searchInsert(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums)
+
+        while left < right:            
+            center = (left+right)>>1
+            if nums[center] == target:
+                return center
+            else:
+                if nums[center] > target:
+                    right = center
+                else:
+                    left = center+1
+                continue
+        return right
+    #old
+    def searchInsert1(self, nums: List[int], target: int) -> int:
         length = len(nums)
 
         # 二分查找
