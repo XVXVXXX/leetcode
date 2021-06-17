@@ -17,6 +17,44 @@
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 from typing import List
 class Solution:
+    #2021/06/17
+    def merge3(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        if n == 0:
+            return None
+        if m == 0:
+            for idx,val in enumerate(nums2):
+                nums1[idx] = val
+            return None
+
+        m1=m-1
+        n1=n-1
+        cursor = m+n-1
+        while m1 > -1 and n1 > -1:
+            val=0      
+            if nums1[m1]<nums2[n1]:
+                val = nums2[n1]
+                n1-=1
+                nums1[cursor]=val
+
+                if n1 == -1:
+                    return None
+            else:
+                val = nums1[m1]
+                m1-=1
+                nums1[cursor]=val
+
+                if m1 == -1:
+                    while n1>-1:
+                        nums1[n1]=nums2[n1]
+                        n1-=1
+                    return None
+
+            cursor-=1     
+        return None
+    
     def merge2(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         if m == 0:
             for idx in range(0, n):
