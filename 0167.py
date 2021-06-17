@@ -18,6 +18,22 @@
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 from typing import List
 
+#2021/06/17
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l = 0
+        r = len(numbers)-1
+        while l<r:
+            diff = numbers[l]+numbers[r]-target
+            if diff < 0:
+                l+=1
+            elif diff > 0:
+                r-=1
+            else:
+                return [l+1,r+1]
+        return [l+1,r+1]
+
+
 class Solution:
     # 双指针
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
