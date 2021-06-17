@@ -21,6 +21,26 @@
 # 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+#2021/06/17
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        cntMaxProfit = 0
+
+        cntMinPrice = prices[0]
+        cntMaxPriceForCntMin = cntMinPrice
+
+        for price in prices[1:]:
+            if cntMinPrice > price:
+                cntMinPrice = price
+                cntMaxPriceForCntMin = price
+            else:
+                if price > cntMaxPriceForCntMin:
+                    cntMaxPriceForCntMin = price
+                    profit = cntMaxPriceForCntMin - cntMinPrice
+                    if profit > cntMaxProfit:
+                        cntMaxProfit = profit
+        return cntMaxProfit
+    
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         if not prices:
