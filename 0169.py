@@ -17,6 +17,17 @@
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 from typing import List
 
+#2021/06/18
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        stack = []
+        for val in nums:
+            if stack and stack[-1] != val:
+                    stack.pop()
+            else:
+                stack.append(val)
+        return stack[0]
+    
 class Solution:
     # hashMap 法...
     def majorityElement(self, nums: List[int]) -> int:
