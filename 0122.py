@@ -29,3 +29,11 @@
 # 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        totalProfit = 0
+        for idx in range(0, len(prices)-1):
+            left = prices[idx]
+            right = prices[idx+1]
+            totalProfit += max(0, right-left)
+        return totalProfit
